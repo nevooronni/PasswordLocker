@@ -4,7 +4,15 @@ class user:
     """
 
     #class variables
-    user_details = []
+    user_list = []
+
+    def save_account(self):
+
+    		"""
+    		save_account method save accounts into the user_list
+    		"""
+
+    		user.user_list.append(self)
 
     def __init__(self,first_name,last_name,email,password):
 
