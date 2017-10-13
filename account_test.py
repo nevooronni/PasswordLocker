@@ -1,5 +1,5 @@
 import unittest
-from accounts import user
+from accounts import User
 
 class TestAccounts(unittest.TestCase):
 
@@ -15,8 +15,13 @@ class TestAccounts(unittest.TestCase):
 				"""
 				set up to run before each test cases.
 				"""
-				self.new_user = user("Nevill","Oronni","nevooronni@gmail.com","speeds01") 
+				self.new_user = User("Nevill","Oronni","nevooronni@gmail.com","speeds01") 
 
+		def tearDown(self):
+				"""
+				method that cleans up after each test has run.
+				"""
+				User.user_list = []
 
 		def test_init(self):
 				"""
@@ -29,12 +34,24 @@ class TestAccounts(unittest.TestCase):
 				self.assertEqual(self.new_user.password,"speeds01")
 
 
-		def test_save_account(self):
+		def test_save_user(self):
 				"""
 				test_save_account test case to test if the new account object is saved into the contact list
 				"""
-				self.new_user.save_account()
-				self.assertEqual(len(user.user_list),1)
+				self.new_user.save_user()
+				self.assertEqual(len(User.user_list),1)
+
+		def test_save_user_many_times(self):
+				"""
+				test_save_account_many_times sees if we can save many contacts to our list
+				"""
+				self.new_user.save_user()
+				test_user = User("Steven","Gerrard","stevenGerrard@gmail.com","gerrard01")
+				test_user.save_user()
+				self.assertEqual(len(User.user_list),2)		
+	
 
 if __name__ == '__main__':
-	unittest.main()
+    unittest.main()
+
+

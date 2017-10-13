@@ -1,4 +1,4 @@
-class user:
+class User:
     """
     class that generates new instance of users
     """
@@ -6,13 +6,13 @@ class user:
     #class variables
     user_list = []
 
-    def save_account(self):
+    def save_user(self):
 
     		"""
     		save_account method save accounts into the user_list
     		"""
 
-    		user.user_list.append(self)
+    		User.user_list.append(self)
 
     def __init__(self,first_name,last_name,email,password):
 
