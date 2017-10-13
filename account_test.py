@@ -61,6 +61,20 @@ class TestAccounts(unittest.TestCase):
 				self.new_user.delete_user()
 				self.assertEqual(len(User.user_list),1)
 
+		def test_login(self):
+				"""
+				test to check if the user can login with his name and email
+				and display their account information
+				"""
+
+				self.new_user.save_user()
+				test_user = User("Steven","Gerrard","stevenGerrard@gmail.com","gerrard01")
+				test_user.save_user()
+
+				login_user = User.find_by("stevenGerrard@gmail.com","gerrard01")
+				self.assertEqual(login_user.first_name,test_user.first_name)
+
+
 if __name__ == '__main__':
     unittest.main()
 
