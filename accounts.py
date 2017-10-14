@@ -25,7 +25,7 @@ class User:
     @classmethod
     def find_by(cls,email,password):
         """
-        Takes in an email and password and returns a user accoutn that matches that those details.
+        Takes in an email and password and return that user with those details.
 
         Args:
             email: user email
@@ -37,6 +37,20 @@ class User:
         for user in cls.user_list:
             if user.email == email and user.password == password:
                 return user
+
+    @classmethod
+    def user_exist(cls,email,password):
+        """
+        authenticates if a user accounts exists
+        Args:
+            email: user email address
+            password: user password
+        Returns :
+            Boolean: True or false depending on whether the user account exists
+        """
+        for user in cls.user_list:
+            if user.email == email and user.password == password:
+                return True
 
     def __init__(self,first_name,last_name,email,password):
 
