@@ -52,6 +52,15 @@ class User:
             if user.email == email and user.password == password:
                 return True
 
+    @classmethod
+    def list_users(cls):
+        """
+        returns the list of users
+        """
+
+        return cls.user_list
+
+
     def __init__(self,first_name,last_name,email,password):
 
     	"""

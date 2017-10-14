@@ -84,6 +84,13 @@ class TestAccounts(unittest.TestCase):
 
 				user_exists = User.user_exist("stevenGerrard@gmail.com","gerrard01")
 				self.assertTrue(user_exists)
+
+		def test_list_all_users(self):
+				"""
+				retuns a list of all the users saved in the app
+				"""
+
+				self.assertEqual(User.list_users(),User.user_list)
 		
 if __name__ == '__main__':
     unittest.main()
