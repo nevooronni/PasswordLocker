@@ -85,7 +85,7 @@ def list_credentials():
 #task function
 def main():
 				while True:
-						print("Welcome to password Locker! the best website to store all of your important acount details use cn - create new account/sign up or l - login to an existing account or x - exit the application")
+						print("Welcome to password Locker! the best website to store all of your important acouont details use cn - create new account/sign up or l - login to an existing account or x - exit the application")
 						print("\n")
 						code = input().lower()
 
@@ -127,11 +127,12 @@ def main():
 
 										print(f"searching {search_email}.........")
 										print("\n")
+										print(f"Welcome {search_account.first_name} {search_account.last_name}! Follow the instructions below to get started.")
 										print(f"UserName: {search_account.first_name} {search_account.last_name}")
 										print(f"Email Address: {search_account.email}")
 										print("\n")
-										print("Enter n to create a new credential, Enter v to view a list of your credentials, Enter s to search/find a credential, Enter b to go back, x to exit the application")
-										enter = input()
+										print("Enter n to create a new credential, v to view a list of your credentials, s to search for a specific credential or b to go back")
+										enter = input().lower()
 
 										if enter == 'n':
 												print("New Credentials")
@@ -152,12 +153,16 @@ def main():
 												print("done 100%")
 												print("\n")
 
-												print(f"Created credentials account name: {account_name} description: {descripetion} password: {password}")
+												print(f"Created credentials ACCOUNT NAME:{account_name} DESCRIPTION:{description} PASSWORD:{password2}")
 												print("\n")
+												check_users(search_email,search_password)
+												search_account = login_user(search_email,search_password)
+												print("You have succesfully created your first credential login again to view your list of credentials")
 
 										elif enter == 's':
 												print("Enter Credential Name")
 												credential_name = input()
+
 												if check_credential(credential_name):
 														search_credential = get_credential(credential_name)
 
@@ -165,32 +170,29 @@ def main():
 														print("\n")
 														print(f"CREDENTIAL NAME: {search_credential.account_name}")
 														print(f"DESCRITPION: {search_credential.description}")
-														print(f,"PASSWORD: {search_credential.password}")
+														print(f"PASSWORD: {search_credential.password}")
 														print("\n")
 												else:
-														print("sorry that credential does not exist! please try again.")				
+														print("sorry that credential does not exist! please try again.")
+														print("\n")			
 
 										elif enter == 'v':
-                    		if list_credentials():
-                    				print("Here is a list of all your credentials")
-                    				print('\n')
+												if list_credentials():
+														print("Here is a list of all your credentials")
+														print('\n')
 
-                    				for credential in list_credential():
-                    						print(f"ACCOUNT NAME: {credential.account_name} DESCRIPTION: {credential.description } PASSWORD: {credential.password}")
-                    						print("\n")
-                        else:
-                        		print("\n")
-                            print("You dont have any credentials saved yet!")
-                            print("\n'")
+														for credential in list_credentials():
+																print(f"ACCOUNT NAME: {credential.account_name} DESCRIPTION: {credential.description } PASSWORD: {credential.password}")
+																print("\n")
+												else:
+														print("\n")
+														print("You dont have any credentials saved yet!")
+														print("\n'")
 
 										elif enter == 'b':
 												main()
-
-										elif enter == 'x':
-												print("Nooooooo....don't go!")
-												break
 										else:
-												print("sorry you did not enter either of the code provided above, please enter the code provided above!")
+												print("sorry you did not enter either of the code provided above, please enter one of the code provided above!")
 												print("\n")
 
 								else:
