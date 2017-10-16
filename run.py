@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.6 
 
 from accounts import User
-from accounts import Credentials 
+from accounts import Credentials
 
 #creating a new user account
 def create_account(first_name,last_name,email,password):
@@ -30,14 +30,14 @@ def delete_account(user):
 #login into a user account
 def login_user(email,password):
 				"""
-				function that finds a user accoutn and logs user in 
+				function that finds a user accoutn and logs user in
 				"""
 				return User.find_by(email,password)
 
 #confirm if a user account exists
 def check_users(email,password):
 				"""
-				function that checks to see if a user exists in the list befor calling login_user to 
+				function that checks to see if a user exists in the list befor calling login_user to
 				return the user account
 				"""
 				return User.user_exist(email,password)
@@ -62,7 +62,7 @@ def delete_credential(credential):
 				"""
 				deletes a credential
 				"""
-				credential.delete_credential()_
+				credential.delete_credential()
 
 def get_credential(name):
 				"""
@@ -85,11 +85,11 @@ def list_credentials():
 #task function
 def main():
 				while True:
-						print("Welcome to password Locker! the best website to store all of your important acount details use CN - create new account/sign up or L - login to an existing account or X - exit the application")		
+						print("Welcome to password Locker! the best website to store all of your important acount details use cn - create new account/sign up or l - login to an existing account or x - exit the application")
 						print("\n")
 						code = input().lower()
 
-						if code == 'CN':
+						if code == 'cn':
 								print("New Account")
 								print("\n")
 
@@ -115,7 +115,7 @@ def main():
 								print(f"Created account for {first_name} {last_name} with email {email}")
 								print("\n")
 
-						elif code =='L':
+						elif code =='l':
 								print("Enter an email address for your user account")
 								search_email = input()
 
@@ -130,21 +130,83 @@ def main():
 										print(f"UserName: {search_account.first_name} {search_account.last_name}")
 										print(f"Email Address: {search_account.email}")
 										print("\n")
-										print("Press V to view a list of your credentials or N")
+										print("Enter n to create a new credential, Enter v to view a list of your credentials, Enter s to search/find a credential, Enter b to go back, x to exit the application")
+										enter = input()
 
+										if enter == 'n':
+												print("New Credentials")
+												print("\n")
+
+												print("Enter Name")
+												account_name = input()
+
+												print("Enter Description")
+												description = input()
+
+												print("Enter Password")
+												password2 = input()
+												print("\n")
+
+												save_credential(create_credential(account_name,description,password2)) #new credential
+												print("\n")
+												print("done 100%")
+												print("\n")
+
+												print(f"Created credentials account name: {account_name} description: {descripetion} password: {password}")
+												print("\n")
+
+										elif enter == 's':
+												print("Enter Credential Name")
+												credential_name = input()
+												if check_credential(credential_name):
+														search_credential = get_credential(credential_name)
+
+														print("searching.........")
+														print("\n")
+														print(f"CREDENTIAL NAME: {search_credential.account_name}")
+														print(f"DESCRITPION: {search_credential.description}")
+														print(f,"PASSWORD: {search_credential.password}")
+														print("\n")
+												else:
+														print("sorry that credential does not exist! please try again.")				
+
+										elif enter == 'v':
+                    		if list_credentials():
+                    				print("Here is a list of all your credentials")
+                    				print('\n')
+
+                    				for credential in list_credential():
+                    						print(f"ACCOUNT NAME: {credential.account_name} DESCRIPTION: {credential.description } PASSWORD: {credential.password}")
+                    						print("\n")
+                        else:
+                        		print("\n")
+                            print("You dont have any credentials saved yet!")
+                            print("\n'")
+
+										elif enter == 'b':
+												main()
+
+										elif enter == 'x':
+												print("Nooooooo....don't go!")
+												break
+										else:
+												print("sorry you did not enter either of the code provided above, please enter the code provided above!")
+												print("\n")
 
 								else:
 										print("That user account does not exist please sign up t create a new account!")
-										print("\n")		
+										print("\n")
 
-						elif code == 'X':
+						elif code == 'x':
 								print("Nooooooo....don't go!")
 								break
 						else:
-								print("sorry you did not enter either of the codes provided above, please enter the codes provided above!")	
-								print("\n")				
-		
+								print("sorry you did not enter either of the codes provided above, please enter the codes provided above!")
+								print("\n")
+
 
 if __name__ == '__main__':
 
 		main()
+
+			
