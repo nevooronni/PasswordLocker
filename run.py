@@ -41,7 +41,7 @@ def check_users(email,password):
 def main():
 				while True:
 						print("Welcome to password Locker! the best website to store all of your important acount details use cn - create new account/sign up or l - login to an existing account or x - exit the application")		
-
+						print("\n")
 						code = input().lower()
 
 						if code == 'cn':
@@ -59,6 +59,7 @@ def main():
 
 								print("Enter Password")
 								password = input()
+								print("\n")
 
 								save_account(create_account(first_name,last_name,email,password)) #new account
 								print("\n")
@@ -91,7 +92,8 @@ def main():
 								print("Nooooooo....don't go!")
 								break
 						else:
-								print("sorry you did not enter either of the codes provided above, please enter the codes provided above!")					
+								print("sorry you did not enter either of the codes provided above, please enter the codes provided above!")	
+								print("\n")				
 		
 
 if __name__ == '__main__':

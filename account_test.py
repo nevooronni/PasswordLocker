@@ -1,5 +1,6 @@
 import unittest
 from accounts import User
+from accounts import Credentials
 
 class TestAccounts(unittest.TestCase):
 
