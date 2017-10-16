@@ -93,6 +93,66 @@ class TestAccounts(unittest.TestCase):
 
 				self.assertEqual(User.list_users(),User.user_list)
 		
+#subclass inherits methods and variables from parent class
+class TestCredentials(unittest.TestCase):
+		"""
+		Test case defines test cases for the credentials class behaviours.
+
+		Args:
+				unittest.TestCase: TestCase class that helps in creating test cases
+		"""
+
+		def setUp(self):
+				"""
+				set up method to run before each test cases.
+				"""
+				self.new_credential = Credentials("Facebook","social media account","space\11")
+
+		def tearDown(self):
+				"""
+				clean/refreshes after each test case runs
+				"""
+
+				Credentials.credential_list = []			
+
+		def test_init(self):
+				"""
+				this tests if the object is initialized properly
+				"""
+
+				self.assertEqual(self.new_credential.account_name,"Facebook")
+				self.assertEqual(self.new_credential.description,"social media account")
+				self.assertEqual(self.new_credential.password,"space\11")
+
+		def test_save_credential(self):
+				"""
+				this test method test to see whether we can save a new credential account
+				"""
+				self.new_credential.save_credential() #save the credential
+				self.assertEqual(len(Credentials.credential_list),1)
+
+		def test_save_many_credentials(self):
+				"""
+				test method to check if we can save multiple credentials
+				"""
+				self.new_credential.save_credential()
+				test_credential = Credentials("Twitter","instant messenger","2222")
+				test_credential.save_credential()
+
+				self.assertEqual(len(Credentials.credential_list),2)
+
+		def test_delete_credential(self):
+				"""
+				method that deletes user credentials account from a list
+				"""
+				self.new_credential.save_credential()
+				test_credential = Credentials("Twitter","instant messenger","2222")
+				test_credential.save_credential()
+
+				self.new_credential.delete_credential() #deletes a credenial
+				self.assertEqual(len(Credentials.credential_list),1)
+
+#if statement if this file is run then unittest should gather all of the test modules and execute them.
 if __name__ == '__main__':
     unittest.main()
 

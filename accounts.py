@@ -88,6 +88,20 @@ class Credentials:
     #class variable that can be accessed by all instances of the class used to store our created credential accounts objects
     credential_list = []    
 
+    def save_credential(self):
+
+        """
+        this method save a new credential account for the user
+        """
+
+        Credentials.credential_list.append(self)
+
+    def delete_credential(self):
+        """
+        method that deletes a credential form a the users credential list
+        """
+
+        Credentials.credential_list.remove(self)
 
 
     def __init__(self,account_name,description,password):
