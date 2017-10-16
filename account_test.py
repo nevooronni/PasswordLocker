@@ -1,4 +1,5 @@
 import unittest
+import pyperclip 
 from accounts import User
 from accounts import Credentials
 
@@ -181,6 +182,16 @@ class TestCredentials(unittest.TestCase):
 				"""
 
 				self.assertEqual(Credentials.show_credentials(),Credentials.credential_list)
+
+		def test_copy_password(self):
+				"""
+				test to see if I can copy my credentials to the clipboard
+				"""
+
+				self.new_credential.save_credential()
+				Credentials.copy_password("Twitter")
+
+				self.assertEqual(self.new_credential.password,pyperclip.paste()) 
 
 #if statement if this file is run then unittest should gather all of the test modules and execute them.
 if __name__ == '__main__':

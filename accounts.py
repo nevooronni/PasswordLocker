@@ -1,3 +1,5 @@
+import pyperclip
+
 class User:
     """
     class that generates new instance of users
@@ -140,6 +142,14 @@ class Credentials:
         method will return a list of all credentials in the app
         """
         return cls.credential_list
+
+    @classmethod    
+    def copy_password(cls,name):
+        """
+        method copies our credentials to the clipboard
+        """
+        find_credential = Credentials.find_by_name(name)
+        pyperclip.copy(find_credential.Password)
 
     def __init__(self,account_name,description,password):
 
