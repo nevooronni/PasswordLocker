@@ -152,6 +152,17 @@ class TestCredentials(unittest.TestCase):
 				self.new_credential.delete_credential() #deletes a credenial
 				self.assertEqual(len(Credentials.credential_list),1)
 
+		def test_find_credential(self):
+				"""
+				method to test whether we can find the specific credential in our credential list
+				"""
+				self.new_credential.save_credential()
+				test_credential = Credentials("Twitter","instant messenger","2222")
+				test_credential.save_credential()
+
+				find_credential = Credentials.find_by_name("Twitter")
+				self.assertEqual(find_credential.description,test_credential.description)
+
 #if statement if this file is run then unittest should gather all of the test modules and execute them.
 if __name__ == '__main__':
     unittest.main()

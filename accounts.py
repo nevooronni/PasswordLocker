@@ -103,6 +103,21 @@ class Credentials:
 
         Credentials.credential_list.remove(self)
 
+    @classmethod    
+    def find_by_name(cls,name):
+        """
+        method which takes an input and returns a credential that mathces the input
+        
+        Args:
+            name: name of the specific user credential/account the user wants to find
+        Returns:
+            credential of the user that matches.
+        """
+
+        for credential in cls.credential_list:
+            if credential.account_name == name:
+                return credential  
+
 
     def __init__(self,account_name,description,password):
 
