@@ -116,8 +116,30 @@ class Credentials:
 
         for credential in cls.credential_list:
             if credential.account_name == name:
-                return credential  
+                return credential 
 
+
+    @classmethod    
+    def credential_check(cls,name):
+        """
+        checks if a user credential account exist
+
+        Args:
+            name: name of the specific user credential/account the user wants to find .
+            Retruns: true or false depending if the credential exists.
+        """
+        for credential in cls.credential_list:
+            if credential.account_name == name:
+                return True
+            
+                return False
+
+    @classmethod    
+    def show_credentials(cls):
+        """
+        method will return a list of all credentials in the app
+        """
+        return cls.credential_list
 
     def __init__(self,account_name,description,password):
 

@@ -163,6 +163,25 @@ class TestCredentials(unittest.TestCase):
 				find_credential = Credentials.find_by_name("Twitter")
 				self.assertEqual(find_credential.description,test_credential.description)
 
+		def test_credential_exists(self):
+				"""
+				test to see if a credential is in the credentials list
+				"""
+
+				self.new_credential.save_credential()
+				test_credential = Credentials("Twitter","instant messenger","2222")
+				test_credential.save_credential()
+
+				credential_exist = Credentials.credential_check("Twitter")
+				self.assertTrue(credential_exist)
+
+		def test_show_credentials(self):
+				"""
+				method will show a list of the credentials
+				"""
+
+				self.assertEqual(Credentials.show_credentials(),Credentials.credential_list)
+
 #if statement if this file is run then unittest should gather all of the test modules and execute them.
 if __name__ == '__main__':
     unittest.main()

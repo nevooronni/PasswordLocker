@@ -86,7 +86,8 @@ def main():
 										print(f"Email Address: {search_account.email}")
 
 								else:
-										print("That user account does not exist please sign up t create a new account!")		
+										print("That user account does not exist please sign up t create a new account!")
+										print("\n")		
 
 						elif code == 'x':
 								print("Nooooooo....don't go!")
