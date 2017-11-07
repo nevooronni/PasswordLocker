@@ -1,4 +1,6 @@
 import pyperclip
+import random
+import string
 
 class User:
     """
@@ -98,6 +100,23 @@ class Credentials:
 
         Credentials.credential_list.append(self)
 
+    def generate_password(cls,length):
+        """
+        method that auto generates a password for a user credential account
+
+        Args:
+            number: number that dictates how long the password should be
+        Returns:
+            A random number that will be saved and used as a password for the user specific credential
+        """
+        new_password = string.ascii_uppercase + string.digits
+        ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
+
+        for credential in cls.credential_list:
+            credential.password == new_password
+        return credential
+
+
     def delete_credential(self):
         """
         method that deletes a credential form a the users credential list
@@ -118,7 +137,9 @@ class Credentials:
 
         for credential in cls.credential_list:
             if credential.account_name == name:
-                return credential 
+    
+                return credential
+
 
 
     @classmethod    
@@ -143,13 +164,22 @@ class Credentials:
         """
         return cls.credential_list
 
-    @classmethod    
-    def copy_password(cls,name):
-        """
-        method copies our credentials to the clipboard
-        """
-        find_credential = Credentials.find_by_name(name)
-        pyperclip.copy(find_credential.Password)
+    #@classmethod    
+    #def copy_password(cls,name):
+        #"""
+        #method copies our credentials to the clipboard
+        #"""
+        #find_credential = Credentials.find_by_name(name)
+        #pyperclip.copy(find_credential.password)
+
+    @classmethod
+    def generate_random_password(cls):
+        '''
+        generates custom password for user/credential accounts
+        '''
+        length = 8
+        characters = string.ascii_uppercase + string.ascii_lowercase + string.digits + '!$<>#%*'
+        return ''.join(random.choice(characters) for _ in range(length))
 
     def __init__(self,account_name,description,password):
 

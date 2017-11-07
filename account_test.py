@@ -183,18 +183,25 @@ class TestCredentials(unittest.TestCase):
 
 				self.assertEqual(Credentials.show_credentials(),Credentials.credential_list)
 
-		def test_copy_password(self):
-				"""
-				test to see if I can copy my credentials to the clipboard
-				"""
+		#def test_copy_password(self):
+				#"""
+				#test to see if I can copy my credentials to the clipboard
+				#"""
 
-				self.new_credential.save_credential()
-				Credentials.copy_password("Twitter")
+				#self.new_credential.save_credential()
+				#Credentials.copy_password("Twitter")
 
-				self.assertEqual(self.new_credential.password,pyperclip.paste()) 
+				#self.assertEqual(self.new_credential.password,pyperclip.paste()) 
+
+		def test_generate_random_password(self):
+			'''
+			test to see if method can auto generate passwords
+			'''
+			generate_random_password = self.new_credential.generate_random_password()
+			self.assertEqual(len(generate_random_password),8)
 
 #if statement if this file is run then unittest should gather all of the test modules and execute them.
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)
 
 
